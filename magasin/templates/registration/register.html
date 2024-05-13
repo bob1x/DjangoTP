@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block content %}
+<h2>S'inscrire</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="d-flex align-items-center">
+  <table>
+    {% for field in form %}
+    <tr>
+      <td>{{ field.label_tag }}</td>
+      <td>{{ field }}</td>
+    </tr>
+    {% for error in field.errors %}
+    <tr>
+      <td></td>
+      <td class="alert alert-danger">{{ error }}</td>
+    </tr>
+    {% endfor %} {% endfor %}
+  </table>
+  <button type="submit">S'inscrire</button>
+</form>
+<div>
+    <small>
+    Deja inscrite?
+    <a href="{% url 'login' %}">Se connecter</a>
+  </small>
+    </div>
+  
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% include 'base.html' %}
+{% block title %} Catalogue de produits {% endblock title %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div id='products' class="col-lg-10 mx-auto">
+            <div class="row">
+                {% for product in products %}
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                    
+                        <img src="{{ product.img.url }}" class="card-img-top" alt="Card image cap">
+                        
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.libelle }}</h5>
+                            <p class="card-text">{{ product.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

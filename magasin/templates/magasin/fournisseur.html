@@ -1,0 +1,46 @@
+{% include 'base.html' %}
+
+{% block content %}
+<div class="container ">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">add fournisseur</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{% url 'nouveauFour' %}" class="post-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.as_p }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Liste de tous les fournisseurs disponibles -->
+<div class="container mt-3 d-flex align-items-center">
+    <div class="row">
+        <div id="fournisseurs" class="col-lg-9 mx-auto">
+            <div class="row">
+                {% for fournisseur in fournisseurs %}
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ fournisseur.nom }}</h5>
+                            <p class="card-text">Adresse e-mail : {{ fournisseur.email }}</p>
+                            <p class="card-text">Téléphone : {{ fournisseur.telephone }}</p>
+                            <!-- Ajoutez d'autres détails du fournisseur si nécessaire -->
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

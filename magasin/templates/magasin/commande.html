@@ -1,0 +1,46 @@
+{% include 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Ajout commande</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{% url 'nouveauComm' %}" class="post-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.as_p }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Liste de toutes les commandes disponibles -->
+<div class="container mt-3">
+    <div class="row">
+        <div id="commandes" class="col-lg-9 mx-auto">
+            <div class="row">
+                {% for commande in commandes %}
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Commande ID: {{ commande.id }}</h5>
+                            <p class="card-text">Date Commande: {{ commande.dateCde }}</p>
+                            <p class="card-text">Produit: {{ commande.produit }}</p>
+                            <p class="card-text">Total Commande: {{ commande.prix }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
